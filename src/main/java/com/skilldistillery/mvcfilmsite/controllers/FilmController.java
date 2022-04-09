@@ -8,12 +8,16 @@ import com.skilldistillery.mvcfilmsite.data.FilmDAO;
 
 @Controller
 public class FilmController {
-
-	@Autowired
-	private FilmDAO filmDAO;
 	
-	@RequestMapping(path= {"/", "home.do"})
+	
+	@Autowired
+	private FilmDAO filmDao;
+	
+	
+	@RequestMapping(path = {"/", "home.do"})
 	public String home() {
+		
 		return "WEB-INF/home.jsp";
 	}
+
 }
