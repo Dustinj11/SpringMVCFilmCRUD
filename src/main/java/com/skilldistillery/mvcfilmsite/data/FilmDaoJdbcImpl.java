@@ -51,6 +51,25 @@ public boolean deleteFilm(Film film) {
 		
 	}
 
+//public boolean updateFilm(Film film) {
+//	Connection conn = null;
+//	
+//	
+//		conn = DriverManager.getConnection(url, user, pass);
+//		
+//		conn.setAutoCommit(false);
+//		
+//		String sql = "UPDATE film SET title=?, description = ?, "
+			
+	
+	
+	
+	
+	
+//	
+//	return false ;
+//}
+
 	public boolean updateActor(Actor actor) {
 		Connection conn = null;
 		try {
@@ -184,43 +203,48 @@ public boolean deleteFilm(Film film) {
 		return film;
 	}
 	
-	public boolean deleteFilm(Film film) {
-		
-		
-		Connection conn = null;
-		try {
-			conn = DriverManager.getConnection(url, user, pass);
+	
 
-			conn.setAutoCommit(false); // START TRANSACTION
-
-			String sql = "DELETE FROM film WHERE id = ?";
-
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, film.getId());
-			int updateCount = stmt.executeUpdate();
-
-
-			conn.commit(); // COMMIT TRANSACTION
-		} catch (SQLException sqle) {
-			sqle.printStackTrace();
-			if (conn != null) {
-				try {
-					conn.rollback();
-				} catch (SQLException sqle2) {
-					System.err.println("Error trying to rollback");
-				}
-			}
-			return false;
-		}
-		return true;
-		
-	}
-
+	
 	@Override
-	public List<Film> findFilmByKeyword(String keyword) {
-		List<Film> film = new ArrayList<>();
+	public List<Film> findFilmByKeyword(String filmKeyword) {
+		Film film = null;
+		List<Film> films = new ArrayList<>();
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			filmKeyword = "%" + filmKeyword + "%";
+			sqltext = "SELECT * FROM film WHERE title LIKE ? OR description LIKE ?";
+			PreparedStatement s = conn.prepareStatement(sqltext);
+			s.setString(1, filmKeyword);
+			s.setString(2, filmKeyword);
+			ResultSet rs = s.executeQuery();
+			while (rs.next()) {
+				film = new Film();
+				film.setId(rs.getInt("id"));
+				film.setFilmTitle(rs.getString("title"));
+				film.setDescription(rs.getString("description"));
+				film.setReleaseYear(rs.getInt("release_year"));
+				//film.setLanguageId(rs.getString("language_id"));
+				// film.setLanguage(rs.getString(findLanguage("id")));
+				// film.setRentalDuration(rs.getInt("rental_duration"));
+				// film.setRentalRate(rs.getDouble("rental_rate"));
+				// film.setFilmLength(rs.getInt("length"));
+				// film.setReplacementCost(rs.getDouble("replacement_cost"));
+				film.setRating(rs.getString("rating"));
+				// film.setSpecialFeatures(rs.getString("special_features"));
+				// film.setCast(findActorsByFilmId(filmId));
+				// creates a Film object
+				films.add(film);
 
-		return film;
+			}
+			rs.close();
+			s.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return films;
 	}
 
 	@Override
