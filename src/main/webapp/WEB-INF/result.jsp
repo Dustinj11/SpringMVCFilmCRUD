@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${film}<br>
+	${film.filmTitle}<br>
 	
 </body>
 </html>
