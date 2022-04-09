@@ -51,24 +51,7 @@ public boolean deleteFilm(Film film) {
 		
 	}
 
-//public boolean updateFilm(Film film) {
-//	Connection conn = null;
-//	
-//	
-//		conn = DriverManager.getConnection(url, user, pass);
-//		
-//		conn.setAutoCommit(false);
-//		
-//		String sql = "UPDATE film SET title=?, description = ?, "
-			
-	
-	
-	
-	
-	
-//	
-//	return false ;
-//}
+
 
 	public boolean updateActor(Actor actor) {
 		Connection conn = null;
