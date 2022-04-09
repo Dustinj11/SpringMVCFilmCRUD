@@ -19,5 +19,9 @@
 
 <a href="addFilm.do">Add a new film</a><br>
 
+<a href="updateFilm.do">Update existing film</a><br>
+
+<a href="deleteFilm.do">Delete film</a><br>
+
 </body>
 </html>
