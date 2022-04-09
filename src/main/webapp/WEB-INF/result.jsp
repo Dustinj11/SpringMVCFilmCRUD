@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${film}<br>
+	<h1>Film Details</h1>
 	
 </body>
-</html>

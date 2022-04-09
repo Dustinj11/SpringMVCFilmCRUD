@@ -47,11 +47,9 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 		return true;
 
-<<<<<<< HEAD
 
-=======
 	}
->>>>>>> ec9bb8160d34a2cca252ade87b59cc7e24802a9b
+
 
 	public boolean updateFilm(Film film) {
 		Connection conn = null;
@@ -295,6 +293,41 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 
 		return films;
+	}
+
+
+	@Override
+	public Actor findActorById(int actorId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Actor> findActorsByFilmId(int filmId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String findLanguage(int filmId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Film createFilm(Film film) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean deleteActor(Actor actor) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
