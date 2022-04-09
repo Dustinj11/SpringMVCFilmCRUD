@@ -2,11 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>MVCFilmSite</display-name>
   <welcome-file-list>
-<<<<<<< HEAD
-    <!-- <welcome-file>home.do</welcome-file> -->
-=======
-<!--     <welcome-file>home.do</welcome-file> -->
->>>>>>> d208e874bedf0ede1ef54da31607a04c1452fdb0
+
   <welcome-file>index.html</welcome-file>
   </welcome-file-list>
   
