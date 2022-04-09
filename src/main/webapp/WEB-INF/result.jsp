@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
+
 	<h1>Film Details</h1>
-=======
+
 	${film.filmTitle}<br>
->>>>>>> c88d6d6971cb57ed1ba249fdee9cfdea122f7f6f
+
 	
 </body>
