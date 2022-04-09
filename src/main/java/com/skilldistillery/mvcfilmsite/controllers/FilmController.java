@@ -40,7 +40,7 @@ public class FilmController {
 		
 		mv.addObject("film", f);
 		
-		mv.setViewName("result.jsp");
+		mv.setViewName("WEB-INF/result.jsp");
 		
 		return mv;
 	}

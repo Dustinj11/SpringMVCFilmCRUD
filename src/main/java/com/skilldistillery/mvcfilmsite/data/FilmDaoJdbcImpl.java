@@ -19,6 +19,16 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	private String pass = "student";
 	private String sqltext = "";
 
+	
+	public FilmDaoJdbcImpl() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public boolean deleteFilm(Film film) {
 
 		Connection conn = null;
@@ -46,8 +56,11 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			return false;
 		}
 		return true;
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 06316e0686e8fc5b4efe48d86b447331c01a7000
 	}
 
 
