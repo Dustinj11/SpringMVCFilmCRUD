@@ -4,9 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MVC FIlm Site</title>
 </head>
 <body>
-<h1>Film Site</h1>
+	<form>
+	
+	
+	</form>
+<h1 style="font-family: sans seriff; color: black;'">MVC Film Site</h1>
+
+<a href="findFilmById.do">Look up film by Id</a><br>
+
+<a href="findFilmByKeyword.do">Look up film by title or description keyword</a><br>
+
+<a href="addFilm.do">Add a new film</a><br>
+
 </body>
 </html>
