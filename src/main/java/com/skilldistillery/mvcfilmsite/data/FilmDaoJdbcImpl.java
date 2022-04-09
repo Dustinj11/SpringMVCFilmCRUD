@@ -19,23 +19,21 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	private String pass = "student";
 	private String sqltext = "";
 
-	public boolean deleteActor(Actor actor) {
+public boolean deleteFilm(Film film) {
+		
+		
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
 
 			conn.setAutoCommit(false); // START TRANSACTION
 
-			String sql = "DELETE FROM film_actor WHERE actor_id = ?";
+			String sql = "DELETE FROM film WHERE id = ?";
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, actor.getActorId());
+			stmt.setInt(1, film.getId());
 			int updateCount = stmt.executeUpdate();
 
-			sql = "DELETE FROM actor WHERE id = ?";
-			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, actor.getActorId());
-			updateCount = stmt.executeUpdate();
 
 			conn.commit(); // COMMIT TRANSACTION
 		} catch (SQLException sqle) {
@@ -50,6 +48,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			return false;
 		}
 		return true;
+		
 	}
 
 	public boolean updateActor(Actor actor) {
@@ -230,14 +229,23 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return null;
 	}
 
+
 	@Override
-	public Actor findActorById(int actorId) {
+	public List<Actor> findActorsByFilmId(int filmId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+
+
 	@Override
-	public List<Actor> findActorsByFilmId(int filmId) {
+	public boolean deleteActor(Actor actor) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Actor findActorById(int actorId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
