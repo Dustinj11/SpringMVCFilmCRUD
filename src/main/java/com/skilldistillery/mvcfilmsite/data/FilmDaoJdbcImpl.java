@@ -56,11 +56,9 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			return false;
 		}
 		return true;
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 06316e0686e8fc5b4efe48d86b447331c01a7000
+
 	}
 
 
