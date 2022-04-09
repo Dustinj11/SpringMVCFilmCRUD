@@ -4,37 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC Film Site</title>
+<title>MVC FIlm Site</title>
 </head>
 <body>
+	<form>
+	
+	
+	</form>
+<h1 style="font-family: sans seriff; color: black;'">MVC Film Site</h1>
 
-<div>
-		
-			<h1>Film MVC Project</h1>
-			
-			<p>Please choose what you would like to do</p>
-			
-			<form action="userChoice.do" >
-			
-				<label for="userOption"> <select name="userOption"
-				
-					class="form-select form-select-lg">
-					
-						<option value="filmID">Find Film By ID</option>
-						
-						<option value="filmKeyword">Find Film By Keyword</option>
-						
-						<option value="addFilm">Add New Film</option>
-						
-				</select>
-				
-				</label> <input type="submit" class="btn btn-outline-dark mt-1" value="Begin" />
-				
-			</form>
-	</div>
+<a href="findFilmById.do">Look up film by Id</a><br>
 
+<a href="findFilmByKeyword.do">Look up film by title or description keyword</a><br>
 
-
+<a href="addFilm.do">Add a new film</a><br>
 
 </body>
 </html>
