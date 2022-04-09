@@ -8,8 +8,7 @@
 </head>
 <body>
 
-<div class="container mx-auto d-flex flex-column vh-100 w-75 mx-auto text-center justify-content-center">
-		<div class="w-50 mx-auto border p-4 form-border">
+<div>
 		
 			<h1>Film MVC Project</h1>
 			
@@ -32,7 +31,6 @@
 				</label> <input type="submit" class="btn btn-outline-dark mt-1" value="Begin" />
 				
 			</form>
-		</div>
 	</div>
 
 
