@@ -22,7 +22,11 @@ public class FilmController {
 //	@RequestMapping(path = {"/", "home.do"})
 //	public String home() {
 //		
+<<<<<<< HEAD
 //		return "WEB-INF/home.jsp";
+=======
+//		return "index.html";
+>>>>>>> d208e874bedf0ede1ef54da31607a04c1452fdb0
 //	}
 	
 
