@@ -165,15 +165,14 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setFilmTitle(rs.getString("title"));
 				film.setDescription(rs.getString("description"));
 				film.setReleaseYear(rs.getInt("release_year"));
-				film.setLanguageId(rs.getString("1"));
-
-				// film.setRentalDuration(rs.getInt("rental_duration"));
-				// film.setRentalRate(rs.getDouble("rental_rate"));
-				// film.setFilmLength(rs.getInt("length"));
-				// film.setReplacementCost(rs.getDouble("replacement_cost"));
+				film.setLanguageId(rs.getInt("1"));
+				film.setRentalDuration(rs.getInt("rental_duration"));
+				film.setRentalRate(rs.getDouble("rental_rate"));
+				film.setFilmLength(rs.getInt("length"));
+				film.setReplacementCost(rs.getDouble("replacement_cost"));
 				film.setRating(rs.getString("rating"));
-				// film.setSpecialFeatures(rs.getString("special_features"));
-				// film.setCast(findActorsByFilmId(filmId));
+				film.setSpecialFeatures(rs.getString("special_features"));
+			//	film.setCast(findActorsByFilmId(filmId));
 				// creates a Film object
 			}
 			rs.close();
@@ -186,10 +185,44 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	}
 
 	@Override
-	public List<Film> findFilmByKeyword(String keyword) {
-		List<Film> film = new ArrayList<>();
+	public List<Film> findFilmByKeyword(String filmKeyword) {
+		Film film =  null;
+		List<Film> films = new ArrayList<>();
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			filmKeyword = "%" + filmKeyword + "%";
+			sqltext = "SELECT * FROM film WHERE title LIKE ? OR description LIKE ?";
+			PreparedStatement s = conn.prepareStatement(sqltext);
+			s.setString(1, filmKeyword);
+			s.setString(2, filmKeyword);
+			ResultSet rs = s.executeQuery();
+			while (rs.next()) {
+				film = new Film();
+				film.setId(rs.getInt("id"));
+				film.setFilmTitle(rs.getString("title"));
+				film.setDescription(rs.getString("description"));
+				film.setReleaseYear(rs.getInt("release_year"));
+			//	film.setLanguageId(rs.getString("language_id"));
+				// film.setLanguage(rs.getString(findLanguage("id")));
+				// film.setRentalDuration(rs.getInt("rental_duration"));
+				// film.setRentalRate(rs.getDouble("rental_rate"));
+				// film.setFilmLength(rs.getInt("length"));
+				// film.setReplacementCost(rs.getDouble("replacement_cost"));
+				film.setRating(rs.getString("rating"));
+				// film.setSpecialFeatures(rs.getString("special_features"));
+				// film.setCast(findActorsByFilmId(filmId));
+				// creates a Film object
+				films.add(film);
 
-		return film;
+			}
+			rs.close();
+			s.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return films;
 	}
 
 	@Override
@@ -206,7 +239,9 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 
