@@ -19,9 +19,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	private String pass = "student";
 	private String sqltext = "";
 
-public boolean deleteFilm(Film film) {
-		
-		
+	public boolean deleteFilm(Film film) {
+
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
@@ -33,7 +32,6 @@ public boolean deleteFilm(Film film) {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, film.getId());
 			int updateCount = stmt.executeUpdate();
-
 
 			conn.commit(); // COMMIT TRANSACTION
 		} catch (SQLException sqle) {
@@ -48,29 +46,10 @@ public boolean deleteFilm(Film film) {
 			return false;
 		}
 		return true;
-		
+
 	}
 
-//public boolean updateFilm(Film film) {
-//	Connection conn = null;
-//	
-//	
-//		conn = DriverManager.getConnection(url, user, pass);
-//		
-//		conn.setAutoCommit(false);
-//		
-//		String sql = "UPDATE film SET title=?, description = ?, "
-			
-	
-	
-	
-	
-	
-//	
-//	return false ;
-//}
-
-	public boolean updateActor(Actor actor) {
+	public boolean updateFilm(Film film) {
 		Connection conn = null;
 		try {
 			/*
@@ -81,37 +60,49 @@ public boolean deleteFilm(Film film) {
 
 			conn.setAutoCommit(false); // START TRANSACTION
 
-			String sql = "UPDATE actor SET first_name=?, last_name=? WHERE id=?";
+			String sql = "UPDATE film SET title=?, description=?, release_year=?, "
+					+ "language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?,"
+					+ " rating=?, special_features=? WHERE id=?";
 
 			PreparedStatement stmt = conn.prepareStatement(sql);
 
-			stmt.setString(1, actor.getFirstName());
-			stmt.setString(2, actor.getLastName());
-			stmt.setInt(3, actor.getActorId());
-//				System.out.println(stmt);
+			stmt.setString(1, film.getFilmTitle());
+			stmt.setString(2, film.getDescription());
+			stmt.setInt(3, film.getReleaseYear());
+			stmt.setInt(4, film.getLanguageId());
+			stmt.setInt(5, film.getRentalDuration());
+			stmt.setDouble(6, film.getRentalRate());
+			stmt.setInt(7, film.getFilmLength());
+			stmt.setDouble(8, film.getReplacementCost());
+			stmt.setString(9, film.getRating());
+			stmt.setString(10, film.getSpecialFeatures());
+
+//		System.out.println(stmt);
 
 			int updateCount = stmt.executeUpdate();
 
 			if (updateCount == 1) {
-				// Replace actor's film list
+//		// Replace actor's film list
+//
+//		// remove the old
+//		sql = "DELETE FROM film_actor WHERE film.id = ?";
+//		stmt = conn.prepareStatement(sql);
+//		stmt.setInt(1, film.getId());
+//		updateCount = stmt.executeUpdate();
+//
+//		// insert the new
+//		sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
+//		stmt = conn.prepareStatement(sql);
+//		
+//		stmt.setInt(1, film.getId());
+//		for (Actor actor: film.getCast()) {
+//			stmt.setInt(2, actor.getActorId());
+//			updateCount = stmt.executeUpdate();
+//		}
 
-				// remove the old
-				sql = "DELETE FROM film_actor WHERE actor_id = ?";
-				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, actor.getActorId());
-				updateCount = stmt.executeUpdate();
-
-				// insert the new
-				sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
-				stmt = conn.prepareStatement(sql);
-
-				for (Film film : actor.getFilms()) {
-					stmt.setInt(1, film.getId());
-					stmt.setInt(2, actor.getActorId());
-					updateCount = stmt.executeUpdate();
-				}
-
-				conn.commit(); // COMMIT TRANSACTION
+				conn.commit();
+				stmt.close();
+				conn.close();// COMMIT TRANSACTION
 			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -127,6 +118,64 @@ public boolean deleteFilm(Film film) {
 		}
 		return true;
 	}
+
+//	public boolean updateActor(Actor actor) {
+//		Connection conn = null;
+//		try {
+//			/*
+//			 * assume everything except the actor's id (PK) may have changed update the
+//			 * actor's fn, ln, and their current list of films in the database
+//			 */
+//			conn = DriverManager.getConnection(url, user, pass);
+//
+//			conn.setAutoCommit(false); // START TRANSACTION
+//
+//			String sql = "UPDATE actor SET first_name=?, last_name=? WHERE id=?";
+//
+//			PreparedStatement stmt = conn.prepareStatement(sql);
+//
+//			stmt.setString(1, actor.getFirstName());
+//			stmt.setString(2, actor.getLastName());
+//			stmt.setInt(3, actor.getActorId());
+////				System.out.println(stmt);
+//
+//			int updateCount = stmt.executeUpdate();
+//
+//			if (updateCount == 1) {
+//				// Replace actor's film list
+//
+//				// remove the old
+//				sql = "DELETE FROM film_actor WHERE actor_id = ?";
+//				stmt = conn.prepareStatement(sql);
+//				stmt.setInt(1, actor.getActorId());
+//				updateCount = stmt.executeUpdate();
+//
+//				// insert the new
+//				sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
+//				stmt = conn.prepareStatement(sql);
+//
+//				for (Film film : actor.getFilms()) {
+//					stmt.setInt(1, film.getId());
+//					stmt.setInt(2, actor.getActorId());
+//					updateCount = stmt.executeUpdate();
+//				}
+//
+//				conn.commit(); // COMMIT TRANSACTION
+//			}
+//		} catch (SQLException sqle) {
+//			sqle.printStackTrace();
+//			if (conn != null) {
+//				try {
+//					conn.rollback();
+//				} // ROLLBACK TRANSACTION ON ERROR
+//				catch (SQLException sqle2) {
+//					System.err.println("Error trying to rollback");
+//				}
+//			}
+//			return false;
+//		}
+//		return true;
+//	}
 
 	@Override
 	public Film addFilm(Film film) {
@@ -202,9 +251,7 @@ public boolean deleteFilm(Film film) {
 		}
 		return film;
 	}
-	
 
-	
 	@Override
 	public List<Film> findFilmByKeyword(String filmKeyword) {
 		Film film = null;
@@ -223,7 +270,7 @@ public boolean deleteFilm(Film film) {
 				film.setFilmTitle(rs.getString("title"));
 				film.setDescription(rs.getString("description"));
 				film.setReleaseYear(rs.getInt("release_year"));
-				//film.setLanguageId(rs.getString("language_id"));
+				// film.setLanguageId(rs.getString("language_id"));
 				// film.setLanguage(rs.getString(findLanguage("id")));
 				// film.setRentalDuration(rs.getInt("rental_duration"));
 				// film.setRentalRate(rs.getDouble("rental_rate"));
@@ -244,39 +291,6 @@ public boolean deleteFilm(Film film) {
 		}
 
 		return films;
-	}
-
-	@Override
-	public String findLanguage(int filmId) {
-
-		return null;
-	}
-
-
-	@Override
-	public List<Actor> findActorsByFilmId(int filmId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public boolean deleteActor(Actor actor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Actor findActorById(int actorId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Film createFilm(Film film) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

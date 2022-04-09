@@ -9,18 +9,19 @@ import com.skilldistillery.mvcfilmsite.entities.Film;
 public interface FilmDAO {
 	public Film findFilmById(int filmId);
 
-	public Actor findActorById(int actorId);
+//	public Actor findActorById(int actorId);
 
-	public List<Actor> findActorsByFilmId(int filmId);
+//	public List<Actor> findActorsByFilmId(int filmId);
 
 	public List<Film> findFilmByKeyword(String keyword);
 
-	public String findLanguage(int filmId);
+//	public String findLanguage(int filmId);
 
-	public Film createFilm(Film film);
+//	public Film createFilm(Film film);
 	
-	public boolean deleteActor(Actor actor);
+//	public boolean deleteActor(Actor actor);
 
-	Film addFilm(Film film);
+	public Film addFilm(Film film);
 	
+	public boolean updateFilm(Film film); 
 }
