@@ -19,11 +19,11 @@ public class FilmController {
 	
 	
 	
-	@RequestMapping(path = {"/", "home.do"})
-	public String home() {
-		
-		return "WEB-INF/home.jsp";
-	}
+//	@RequestMapping(path = {"/", "home.do"})
+//	public String home() {
+//		
+//		return "index.html";
+//	}
 	
 
 	

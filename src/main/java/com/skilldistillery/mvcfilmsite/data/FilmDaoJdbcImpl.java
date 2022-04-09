@@ -56,11 +56,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			return false;
 		}
 		return true;
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 06316e0686e8fc5b4efe48d86b447331c01a7000
 	}
 
 
@@ -307,40 +303,5 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 		return films;
 	}
-
-
-	@Override
-	public Actor findActorById(int actorId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<Actor> findActorsByFilmId(int filmId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public String findLanguage(int filmId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public Film createFilm(Film film) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public boolean deleteActor(Actor actor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
+
