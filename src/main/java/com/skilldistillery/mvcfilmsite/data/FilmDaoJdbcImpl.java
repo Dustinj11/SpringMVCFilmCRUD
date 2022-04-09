@@ -47,11 +47,9 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 		return true;
 
-<<<<<<< HEAD
 
-=======
 	}
->>>>>>> ec9bb8160d34a2cca252ade87b59cc7e24802a9b
+
 
 	public boolean updateFilm(Film film) {
 		Connection conn = null;
