@@ -203,6 +203,7 @@ public boolean deleteFilm(Film film) {
 		return film;
 	}
 	
+<<<<<<< HEAD
 	
 
 	
@@ -243,6 +244,8 @@ public boolean deleteFilm(Film film) {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+=======
+>>>>>>> 81866f49b2afce3b720b4de838be9e530938fcf2
 
 		return films;
 	}
