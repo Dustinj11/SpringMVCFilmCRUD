@@ -1,5 +1,7 @@
 package com.skilldistillery.mvcfilmsite.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,58 +13,62 @@ import com.skilldistillery.mvcfilmsite.entities.Film;
 
 @Controller
 public class FilmController {
-	
-	
+
 	@Autowired
 	private FilmDAO filmDao;
-	
-	
-	
-	
+
 //	@RequestMapping(path = {"/", "home.do"})
 //	public String home() {
 //		
-<<<<<<< HEAD
 //		return "WEB-INF/home.jsp";
-=======
-//		return "index.html";
->>>>>>> d208e874bedf0ede1ef54da31607a04c1452fdb0
-//	}
-	
 
-	
-	
-	@RequestMapping(path = "findFilmById.do",
-			params = "id",
-			method = RequestMethod.GET
-			)
+//		return "index.html";
+
+//	}
+
+	@RequestMapping(path = "findFilmById.do", params = "id", method = RequestMethod.GET)
 	public ModelAndView findFilmById(int id) {
-		
-		ModelAndView mv = new ModelAndView(); 
-		
+
+		ModelAndView mv = new ModelAndView();
+
 		Film f = filmDao.findFilmById(id);
-		
+
 		mv.addObject("film", f);
-		
+
 		mv.setViewName("WEB-INF/result.jsp");
+
+		return mv;
+	}
+
+	@RequestMapping(path = "findFilmByKeyword.do", params = "keyWord", method = RequestMethod.GET)
+	public ModelAndView findFilmByKeyWord(String keyWord) {
+
+		ModelAndView mv = new ModelAndView();
+
+		List<Film> films = filmDao.findFilmByKeyword(keyWord);
+
+		mv.addObject("film", films);
+
+		mv.setViewName("WEB-INF/keyword.jsp");
+
+		return mv;
+		
+		
+		
+	}
+	@RequestMapping(path = "updateFilm.do", params ="id", method= RequestMethod.GET)
+	public ModelAndView updateFilm(Film film) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		
+		
+		
+		
+		 
+		 
+		
 		
 		return mv;
 	}
-//	@RequestMapping(path = "findFilmByKeyword.do",
-//			params = "id",
-//			method = RequestMethod.GET
-//			)
-//	public ModelAndView findFilmByKeyWord(String word) {
-//		
-//ModelAndView mv = new ModelAndView(); 
-//		
-//		Film f = filmDao.findFilmByKeyword(word);
-//		
-//		mv.addObject("film", f);
-//		
-//		mv.setViewName("result.jsp");
-//		
-//		return mv;
-//	}
-
 }
