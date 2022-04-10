@@ -115,7 +115,7 @@ public class FilmController {
 		film.setReplacementCost(replacementCost);
 		film.setRating(rating);
 		film.setSpecialFeatures(specialFeatures);
-		filmDao.addFilm(film);
+		filmDao.updateFilm(film);
 		redir.addFlashAttribute("film", film);
 		mv.setViewName("redirect:filmEdited.do");
 		return mv;

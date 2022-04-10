@@ -13,7 +13,9 @@
 
 	${film}<br>
 	 
-	 
+	<a href="deleteFilm.html">Delete this film</a><br>
+
+	<a href="editFilm.html">Edit this film</a><br>
 	
 
 	

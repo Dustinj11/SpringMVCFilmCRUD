@@ -249,6 +249,34 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 		return films;
 	}
+	@Override
+	public List<Actor> findActorsByFilmId(int filmId) {
+		List<Actor> actors = new ArrayList<>();
+		Actor actorOne = null;
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			sqltext = "SELECT a.id, a.first_name, a.last_name, film.id" + " FROM film_actor f"
+					+ " JOIN actor a ON f.actor_id = a.id" + " JOIN film ON f.film_id = film.id" + " WHERE film.id = ?";
+			PreparedStatement s = conn.prepareStatement(sqltext);
+			s.setInt(1, filmId);
+			ResultSet rs = s.executeQuery();
+			while (rs.next()) {
+				actorOne = new Actor();
+				actorOne.setActorId(rs.getInt("id"));
+				actorOne.setFirstName(rs.getString("first_name"));
+				actorOne.setLastName(rs.getString("last_name"));
+				actors.add(actorOne);
+
+			}
+			rs.close();
+			s.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return actors;
+	}
 }
 
 
