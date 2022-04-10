@@ -3,16 +3,7 @@
   <display-name>MVCFilmSite</display-name>
   <welcome-file-list>
 
-
-   <!--  --> <welcome-file>home.do</welcome-file>
   <welcome-file>index.html</welcome-file> 
-
-<!--     <welcome-file>home.do</welcome-file> -->
-
-<<<<<<< HEAD
-=======
-  <welcome-file>index.html</welcome-file>
->>>>>>> d3b2681db7f814910966fe833a54d979d667d726
 
   </welcome-file-list>
   

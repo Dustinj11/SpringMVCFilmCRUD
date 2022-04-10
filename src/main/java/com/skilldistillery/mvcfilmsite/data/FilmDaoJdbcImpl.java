@@ -193,10 +193,11 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	public Film addFilm(Film film) {
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
+			conn.setAutoCommit(false);
 			String sql = "INSERT INTO film " + " (title, description, release_year, language_id, rental_duration, "
-					+ "rental_rate, length, replacement_cost, rating, special_features, language) "
+					+ "rental_rate, length, replacement_cost, rating, special_features) "
 					// TODO: Add the rest of the film properties
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getFilmTitle());
 			stmt.setString(2, film.getDescription());
@@ -206,9 +207,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			stmt.setDouble(6, film.getRentalRate());
 			stmt.setInt(7, film.getFilmLength());
 			stmt.setDouble(8, film.getReplacementCost());
-			stmt.setString(4, film.getRating());
+			stmt.setString(9, film.getRating());
 			stmt.setString(10, film.getSpecialFeatures());
-			stmt.setString(11, film.getLanguage());
 
 			int updateCount = stmt.executeUpdate();
 			if (updateCount == 1) {
@@ -218,7 +218,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				}
 				rs.close();
 			}
-
+			conn.commit();
 			stmt.close();
 			conn.close();
 		} catch (SQLException sqle) {

@@ -10,7 +10,7 @@
 
 </head>
 <body>
-${film.filmTitle}
+${film}
 
 
 </body>
