@@ -10,7 +10,15 @@
 
 </head>
 <body>
-${film}
+
+  <c:choose>
+    <c:when test="${film == true}">
+      Your film has been deleted
+    </c:when>
+    <c:otherwise test= "${film != true}">
+    Try again
+  </c:otherwise>
+  </c:choose>
 
 
 </body>
