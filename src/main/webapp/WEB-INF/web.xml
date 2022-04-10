@@ -3,6 +3,7 @@
   <display-name>MVCFilmSite</display-name>
   <welcome-file-list>
 
+<<<<<<< HEAD
 
    <!--  --> <welcome-file>home.do</welcome-file>
   <welcome-file>index.html</welcome-file> 
@@ -11,6 +12,10 @@
 
   <welcome-file>index.html</welcome-file>
 
+=======
+  <welcome-file>index.html</welcome-file> 
+
+>>>>>>> f5125af5b055d84a67dd86b36b70a7b403d616b7
   </welcome-file-list>
   
   <!-- The front controller of this Spring Web application, responsible for handling all application requests -->

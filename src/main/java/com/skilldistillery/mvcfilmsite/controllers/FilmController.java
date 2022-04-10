@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.mvcfilmsite.data.FilmDAO;
 import com.skilldistillery.mvcfilmsite.entities.Film;
@@ -56,19 +57,36 @@ public class FilmController {
 		
 		
 	}
-	@RequestMapping(path = "updateFilm.do", params ="id", method= RequestMethod.GET)
-	public ModelAndView updateFilm(Film film) {
-		
+	@RequestMapping(path = "addFilm.do", method= RequestMethod.POST)
+	public ModelAndView updateFilm(String filmTitle, String description, int releaseYear, int languageId, int rentalDuration, double rentalRate, int filmLength, double replacementCost, String rating, String specialFeatures, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
-		
-		
-		
-		
-		
-		 
-		 
-		
-		
+		Film film = new Film();
+		film.setFilmTitle(filmTitle);
+		film.setDescription(description);
+		film.setReleaseYear(releaseYear);
+		film.setLanguageId(languageId);
+		film.setRentalDuration(rentalDuration);
+		film.setRentalRate(rentalRate);
+		film.setFilmLength(filmLength);
+		film.setReplacementCost(replacementCost);
+		film.setRating(rating);
+		film.setSpecialFeatures(specialFeatures);
+		filmDao.addFilm(film);
+		redir.addFlashAttribute("film", film);
+		mv.setViewName("redirect:filmAdded.do");
 		return mv;
 	}
-}
+		
+	@RequestMapping("filmAdded.do")	
+	public ModelAndView filmAdded() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/newFilm.jsp");
+		return mv;
+	}
+		 
+		 
+		
+		
+		
+	}
+
