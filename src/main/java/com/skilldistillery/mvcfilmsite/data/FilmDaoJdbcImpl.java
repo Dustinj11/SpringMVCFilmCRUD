@@ -131,63 +131,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return true;
 	}
 
-//	public boolean updateActor(Actor actor) {
-//		Connection conn = null;
-//		try {
-//			/*
-//			 * assume everything except the actor's id (PK) may have changed update the
-//			 * actor's fn, ln, and their current list of films in the database
-//			 */
-//			conn = DriverManager.getConnection(url, user, pass);
-//
-//			conn.setAutoCommit(false); // START TRANSACTION
-//
-//			String sql = "UPDATE actor SET first_name=?, last_name=? WHERE id=?";
-//
-//			PreparedStatement stmt = conn.prepareStatement(sql);
-//
-//			stmt.setString(1, actor.getFirstName());
-//			stmt.setString(2, actor.getLastName());
-//			stmt.setInt(3, actor.getActorId());
-////				System.out.println(stmt);
-//
-//			int updateCount = stmt.executeUpdate();
-//
-//			if (updateCount == 1) {
-//				// Replace actor's film list
-//
-//				// remove the old
-//				sql = "DELETE FROM film_actor WHERE actor_id = ?";
-//				stmt = conn.prepareStatement(sql);
-//				stmt.setInt(1, actor.getActorId());
-//				updateCount = stmt.executeUpdate();
-//
-//				// insert the new
-//				sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
-//				stmt = conn.prepareStatement(sql);
-//
-//				for (Film film : actor.getFilms()) {
-//					stmt.setInt(1, film.getId());
-//					stmt.setInt(2, actor.getActorId());
-//					updateCount = stmt.executeUpdate();
-//				}
-//
-//				conn.commit(); // COMMIT TRANSACTION
-//			}
-//		} catch (SQLException sqle) {
-//			sqle.printStackTrace();
-//			if (conn != null) {
-//				try {
-//					conn.rollback();
-//				} // ROLLBACK TRANSACTION ON ERROR
-//				catch (SQLException sqle2) {
-//					System.err.println("Error trying to rollback");
-//				}
-//			}
-//			return false;
-//		}
-//		return true;
-//	}
 
 	@Override
 	public Film addFilm(Film film) {
@@ -311,3 +254,61 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 
 
+
+//	public boolean updateActor(Actor actor) {
+//		Connection conn = null;
+//		try {
+//			/*
+//			 * assume everything except the actor's id (PK) may have changed update the
+//			 * actor's fn, ln, and their current list of films in the database
+//			 */
+//			conn = DriverManager.getConnection(url, user, pass);
+//
+//			conn.setAutoCommit(false); // START TRANSACTION
+//
+//			String sql = "UPDATE actor SET first_name=?, last_name=? WHERE id=?";
+//
+//			PreparedStatement stmt = conn.prepareStatement(sql);
+//
+//			stmt.setString(1, actor.getFirstName());
+//			stmt.setString(2, actor.getLastName());
+//			stmt.setInt(3, actor.getActorId());
+////				System.out.println(stmt);
+//
+//			int updateCount = stmt.executeUpdate();
+//
+//			if (updateCount == 1) {
+//				// Replace actor's film list
+//
+//				// remove the old
+//				sql = "DELETE FROM film_actor WHERE actor_id = ?";
+//				stmt = conn.prepareStatement(sql);
+//				stmt.setInt(1, actor.getActorId());
+//				updateCount = stmt.executeUpdate();
+//
+//				// insert the new
+//				sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?,?)";
+//				stmt = conn.prepareStatement(sql);
+//
+//				for (Film film : actor.getFilms()) {
+//					stmt.setInt(1, film.getId());
+//					stmt.setInt(2, actor.getActorId());
+//					updateCount = stmt.executeUpdate();
+//				}
+//
+//				conn.commit(); // COMMIT TRANSACTION
+//			}
+//		} catch (SQLException sqle) {
+//			sqle.printStackTrace();
+//			if (conn != null) {
+//				try {
+//					conn.rollback();
+//				} // ROLLBACK TRANSACTION ON ERROR
+//				catch (SQLException sqle2) {
+//					System.err.println("Error trying to rollback");
+//				}
+//			}
+//			return false;
+//		}
+//		return true;
+//	}
