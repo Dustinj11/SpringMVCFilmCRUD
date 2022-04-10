@@ -4,12 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List of films</title>
+<title>Keyword films</title>
 </head>
 <body>
 
-${film}
+<h1>Films:</h1>
 
+		<c:forTokens items = "${film}" var = "f">
+         <c:out value = "${f.title}"/><p>
+      </c:forTokens>
 
 </body>
 </html>
