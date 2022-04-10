@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -48,7 +49,7 @@ public class FilmController {
 
 		List<Film> films = filmDao.findFilmByKeyword(keyWord);
 
-		mv.addObject("film", films);
+		mv.addObject("films", films);
 
 		mv.setViewName("WEB-INF/keyword.jsp");
 
@@ -99,22 +100,17 @@ public class FilmController {
 		return mv;
 
 	}
-	@RequestMapping(path = "editFilm.do", method = RequestMethod.POST)
-	public ModelAndView editFilm(String filmTitle, String description, int releaseYear, int languageId,
-			int rentalDuration, double rentalRate, int filmLength, double replacementCost, String rating,
-			String specialFeatures, RedirectAttributes redir) {
+	@RequestMapping(path = "editFilm.do", method = RequestMethod.GET)
+	public ModelAndView goToEditFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
-		Film film = new Film();
-		film.setFilmTitle(filmTitle);
-		film.setDescription(description);
-		film.setReleaseYear(releaseYear);
-		film.setLanguageId(languageId);
-		film.setRentalDuration(rentalDuration);
-		film.setRentalRate(rentalRate);
-		film.setFilmLength(filmLength);
-		film.setReplacementCost(replacementCost);
-		film.setRating(rating);
-		film.setSpecialFeatures(specialFeatures);
+		Film film = filmDao.findFilmById(filmId);
+		mv.addObject("film", film);
+		mv.setViewName("WEB-INF/editFilm.jsp");
+		return mv;
+	}
+			@RequestMapping(path = "editFilm.do", method = RequestMethod.POST)
+	public ModelAndView editFilm(Film film, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
 		filmDao.updateFilm(film);
 		redir.addFlashAttribute("film", film);
 		mv.setViewName("redirect:filmEdited.do");
@@ -124,7 +120,7 @@ public class FilmController {
 	@RequestMapping("filmEdited.do")
 	public ModelAndView filmEdited() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("WEB-INF/editFilm.jsp");
+		mv.setViewName("WEB-INF/result.jsp");
 		return mv;
 	}
 
