@@ -136,7 +136,9 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	public Film addFilm(Film film) {
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
+			
 			conn.setAutoCommit(false);
+			
 			String sql = "INSERT INTO film " + " (title, description, release_year, language_id, rental_duration, "
 					+ "rental_rate, length, replacement_cost, rating, special_features) "
 					// TODO: Add the rest of the film properties
@@ -150,7 +152,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			stmt.setDouble(6, film.getRentalRate());
 			stmt.setInt(7, film.getFilmLength());
 			stmt.setDouble(8, film.getReplacementCost());
-			stmt.setString(4, film.getRating());
+			stmt.setString(9, film.getRating());
 			stmt.setString(10, film.getSpecialFeatures());
 
 			int updateCount = stmt.executeUpdate();
