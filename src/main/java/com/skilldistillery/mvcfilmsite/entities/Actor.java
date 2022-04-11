@@ -90,8 +90,7 @@ public class Actor {
 
 	@Override
 	public String toString() {
-		return "Actor [actorId=" + actorId + ", firstName=" + firstName + ", lastName=" + lastName + ", films=" + films
-				+ "]";
+		return "First Name: " + firstName + " Last Name: " + lastName;
 	}
 	
 }

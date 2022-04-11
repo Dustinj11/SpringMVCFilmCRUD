@@ -19,7 +19,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	private String pass = "student";
 	private String sqltext = "";
 
-	
 	public FilmDaoJdbcImpl() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -27,8 +26,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public boolean deleteFilm(int filmId) {
 		Film film = new Film();
 		Connection conn = null;
@@ -57,9 +55,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 		return true;
 
-
 	}
-
 
 	public boolean updateFilm(Film film) {
 		Connection conn = null;
@@ -131,14 +127,13 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return true;
 	}
 
-
 	@Override
 	public Film addFilm(Film film) {
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			
+
 			conn.setAutoCommit(false);
-			
+
 			String sql = "INSERT INTO film " + " (title, description, release_year, language_id, rental_duration, "
 					+ "rental_rate, length, replacement_cost, rating, special_features) "
 					// TODO: Add the rest of the film properties
@@ -189,16 +184,16 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setFilmTitle(rs.getString("title"));
 				film.setDescription(rs.getString("description"));
 				film.setReleaseYear(rs.getInt("release_year"));
-				film.setLanguageId(rs.getInt("1"));
-
-				// film.setRentalDuration(rs.getInt("rental_duration"));
-				// film.setRentalRate(rs.getDouble("rental_rate"));
-				// film.setFilmLength(rs.getInt("length"));
-				// film.setReplacementCost(rs.getDouble("replacement_cost"));
+				film.setLanguageId(rs.getInt("language_id"));
+				film.setRentalDuration(rs.getInt("rental_duration"));
+				film.setRentalRate(rs.getDouble("rental_rate"));
+				film.setFilmLength(rs.getInt("length"));
+				film.setReplacementCost(rs.getDouble("replacement_cost"));
 				film.setRating(rs.getString("rating"));
-				// film.setSpecialFeatures(rs.getString("special_features"));
+				film.setSpecialFeatures(rs.getString("special_features"));
 				// film.setCast(findActorsByFilmId(filmId));
 				// creates a Film object
+				film.setCast(findActorsByFilmId(filmId));
 			}
 			rs.close();
 			s.close();
@@ -249,6 +244,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 		return films;
 	}
+
 	@Override
 	public List<Actor> findActorsByFilmId(int filmId) {
 		List<Actor> actors = new ArrayList<>();
@@ -278,12 +274,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return actors;
 	}
 }
-
-
-
-
-
-
 
 //	public boolean updateActor(Actor actor) {
 //		Connection conn = null;
