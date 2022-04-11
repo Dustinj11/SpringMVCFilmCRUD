@@ -13,7 +13,7 @@
 
 
 	<c:choose>
-	<c:when test="${! empty film}">
+	<c:when test="${! empty films}">
 	<ul>
 	<c:forEach var="f" items="${films}">
 	<li>${f.filmTitle} <a href="editFilm.do?filmId=${f.id}">edit</a></li>
