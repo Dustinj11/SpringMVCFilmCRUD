@@ -194,6 +194,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				// film.setCast(findActorsByFilmId(filmId));
 				// creates a Film object
 				film.setCast(findActorsByFilmId(filmId));
+				film.setCatagory(findCategoryByFilmId(rs.getInt("id")));
 			}
 			rs.close();
 			s.close();
@@ -230,6 +231,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setRating(rs.getString("rating"));
 				 film.setSpecialFeatures(rs.getString("special_features"));
 				film.setCast(findActorsByFilmId(rs.getInt("id")));
+				
+				film.setCatagory(findCategoryByFilmId(rs.getInt("id")));
 				// creates a Film object
 				
 				films.add(film);
@@ -273,6 +276,49 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 		return actors;
 	}
+	
+	public String findCategoryByFilmId(int filmId) {
+        String category = "";
+        Connection conn = null;
+        PreparedStatement  stmt = null;
+        ResultSet rs =null;
+        try {
+            String sqltext = "SELECT f.id,  c.name FROM category c JOIN film_category fc ON c.id = fc.category_id JOIN film f ON fc.film_id = f.id WHERE f.id = ? ORDER BY f.title";
+          
+        	 conn= DriverManager.getConnection(url, user, pass);
+         stmt = conn.prepareStatement(sqltext);
+            stmt.setInt(1, filmId);
+        		rs   = stmt.executeQuery();
+
+            if (rs.next()) {
+                System.out.println("here");
+                category = rs.getString("name");
+            } else {
+                category = "No category listed for selected film.";
+            }
+
+            return category;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                } // Not needed, stmt.close() will close it; but good practice
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException sqle) {
+                System.err.println(sqle);
+            }
+        }
+        return category;
+    }
+	
 }
 
 //	public boolean updateActor(Actor actor) {

@@ -186,7 +186,8 @@ public class Film {
 		return "Film id: " + id + ", Film Title: " + filmTitle + ", Description: " + description + ", Release Year: "
 				+ releaseYear + ", LanguageId: " + languageId + ", RentalDuration: " + rentalDuration + ", RentalRate: "
 				+ rentalRate + ", FilmLength: " + filmLength + ", Replacement Cost: " + replacementCost + ", Rating: "
-				+ rating + ", Special Features: " + specialFeatures + ", Language: " + language + ", Cast: " + cast;
+				+ rating + ", Special Features: " + specialFeatures + ", Language: " + language + ", Cast: " + cast+ " Category: "
+				+catagory;
 	}
 
 }
