@@ -16,6 +16,7 @@
 	<li>${f.filmTitle} <a href="editFilm.do?filmId=${f.id}">edit</a></li>
 	</c:forEach>
 	</ul>
+	<br>
 
 </body>
 </html>

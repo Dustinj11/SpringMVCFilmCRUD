@@ -57,7 +57,7 @@ ${film}
 		<input type="radio" name="rating" value="R"/>
 		<label for="R">R</label>
       <br>
-      Special Features:
+      <!-- Special Features:
       <br>
 		<input type="checkbox" name="specialFeatures" value="Trailers"/>
 		<label for="Trailers">Trailers</label>
@@ -65,7 +65,7 @@ ${film}
 		<label for="Deleted Scenes">Deleted Scenes</label>
 		<input type="checkbox" name="specialFeatures" value="Behind The Scenes"/>
 		<label for="Behind The Scenes">Behind The Scenes</label>
-		<br>
+		<br> -->
       
       <input type="submit" value="Submit Edits">
     </form>
