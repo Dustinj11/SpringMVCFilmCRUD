@@ -20,6 +20,7 @@
     Try again
   </c:otherwise>
   </c:choose>
+  <input type="button" onclick="location.href='index.html';" value="Home" />
 
 
 </body>

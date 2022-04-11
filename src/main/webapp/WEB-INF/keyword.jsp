@@ -11,12 +11,23 @@
 
 <h1>Films:</h1>
 
+
+	<c:choose>
+	<c:when test="${! empty film}">
 	<ul>
 	<c:forEach var="f" items="${films}">
 	<li>${f.filmTitle} <a href="editFilm.do?filmId=${f.id}">edit</a></li>
 	</c:forEach>
 	</ul>
-	<br>
+	
+	</c:when>
+	
+	<c:otherwise>
+	<h2>No film found with that keyword</h2>
+	</c:otherwise>
+	</c:choose>
+	
+	<input type="button" onclick="location.href='index.html';" value="Home" />
 
 </body>
 </html>

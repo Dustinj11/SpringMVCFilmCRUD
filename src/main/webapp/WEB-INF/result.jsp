@@ -27,6 +27,8 @@
 				<li>Rating: ${ film.rating}</li>
 				<li>Special Features: ${ film.specialFeatures}</li>
 				<li>Cast: ${ film.cast}</li>
+				<li>Category: ${ film.catagory}</li>
+				<li>Language: ${ film.language}</li>
 				
 
 			</ul>
