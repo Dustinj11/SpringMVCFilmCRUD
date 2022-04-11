@@ -33,7 +33,7 @@ public class Film {
 
 	public Film(int id, String filmTitle, String description, int releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int filmLength, double replacementCost, String rating, String specialFeatures,
-			List<Actor> cast, String catagory) {
+			List<Actor> cast, String catagory, String language) {
 		super();
 		this.id = id;
 		this.filmTitle = filmTitle;
@@ -48,6 +48,7 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 		this.cast = cast;
 		this.catagory = catagory;
+		this.language = language;
 	}
 	
 	public String getCatagory() {
