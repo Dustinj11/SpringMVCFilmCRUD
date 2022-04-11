@@ -17,42 +17,23 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private String language;
-	
 	private List<Actor> cast;
+	private String catagory;
+
 	
 
-	public String getLanguage() {
-		return language;
-	}
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
+
 
 	public Film() {
 		super();
 	}
 
-//	public Film(int id, String filmTitle, String description, int releaseYear, int languageId, int rentalDuration,
-//			double rentalRate, int filmLength, double replacementCost, String rating, String specialFeatures) {
-//		super();
-//		this.id = id;
-//		this.filmTitle = filmTitle;
-//		this.description = description;
-//		this.releaseYear = releaseYear;
-//		this.languageId = languageId;
-//		this.rentalDuration = rentalDuration;
-//		this.rentalRate = rentalRate;
-//		this.filmLength = filmLength;
-//		this.replacementCost = replacementCost;
-//		this.rating = rating;
-//		this.specialFeatures = specialFeatures;
-//
-//	}
+
 
 	public Film(int id, String filmTitle, String description, int releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int filmLength, double replacementCost, String rating, String specialFeatures,
-			List<Actor> cast) {
+			List<Actor> cast, String catagory) {
 		super();
 		this.id = id;
 		this.filmTitle = filmTitle;
@@ -66,6 +47,25 @@ public class Film {
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 		this.cast = cast;
+		this.catagory = catagory;
+	}
+	
+	public String getCatagory() {
+		return catagory;
+	}
+	
+	
+	
+	public void setCatagory(String catagory) {
+		this.catagory = catagory;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	public List<Actor> getCast() {

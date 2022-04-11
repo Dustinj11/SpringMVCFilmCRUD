@@ -222,16 +222,16 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setFilmTitle(rs.getString("title"));
 				film.setDescription(rs.getString("description"));
 				film.setReleaseYear(rs.getInt("release_year"));
-				// film.setLanguageId(rs.getString("language_id"));
-				// film.setLanguage(rs.getString(findLanguage("id")));
-				// film.setRentalDuration(rs.getInt("rental_duration"));
-				// film.setRentalRate(rs.getDouble("rental_rate"));
-				// film.setFilmLength(rs.getInt("length"));
-				// film.setReplacementCost(rs.getDouble("replacement_cost"));
+				 film.setLanguageId(rs.getInt("language_id"));
+				 film.setRentalDuration(rs.getInt("rental_duration"));
+				 film.setRentalRate(rs.getDouble("rental_rate"));
+				 film.setFilmLength(rs.getInt("length"));
+				film.setReplacementCost(rs.getDouble("replacement_cost"));
 				film.setRating(rs.getString("rating"));
-				// film.setSpecialFeatures(rs.getString("special_features"));
-				// film.setCast(findActorsByFilmId(filmId));
+				 film.setSpecialFeatures(rs.getString("special_features"));
+				film.setCast(findActorsByFilmId(rs.getInt("id")));
 				// creates a Film object
+				
 				films.add(film);
 
 			}
