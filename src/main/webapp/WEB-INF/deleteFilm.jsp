@@ -13,10 +13,10 @@
 <body>
 
   <c:choose>
-    <c:when test="${film == true}">
+    <c:when test= "true">
       Your film has been deleted
     </c:when>
-    <c:otherwise test= "${film != true}">
+    <c:otherwise>
     Try again
   </c:otherwise>
   </c:choose>

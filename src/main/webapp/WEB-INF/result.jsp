@@ -41,10 +41,7 @@
 			</c:when>
 	
 			<c:otherwise> 
-				<form action="deleteFilm.do" method="POST">
-					<input type="hidden" name="id" value="${film.id}">
-					<input type="submit" name="submit" value="Delete Film">
-				</form>
+			<a href="deleteFilm.html">Delete this film</a><br>
 			</c:otherwise>
 
 	</c:choose>
